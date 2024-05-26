@@ -6,6 +6,8 @@ import 'package:weatherapp/views/nowheatherbody.dart';
 import 'package:weatherapp/views/search_page.dart';
 import 'package:weatherapp/views/wheatherbodyinfo.dart';
 
+import '../main.dart';
+
 class Home_Page extends StatelessWidget {
   static bool s = false;
 
@@ -18,6 +20,11 @@ class Home_Page extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Weather App"),
+
+          backgroundColor: getThemeColor(
+              BlocProvider.of<Get_Weather_Cubit>(context)
+                  .Weathermodel
+                  ?.status),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),

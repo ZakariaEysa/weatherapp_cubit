@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/cubits/get%20weather%20cubit/Get_Weather_cubit.dart';
-import 'package:weatherapp/main.dart';
-import 'package:weatherapp/models/weathermodel.dart';
+import '../cubits/WeatherCubit/get_weather_cubit.dart';
+import '../main.dart';
+import '../models/weather_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Weathe_Body_Info extends StatelessWidget {
+class WeatherBodyInfo extends StatelessWidget {
   String? image = "https:";
+
+  WeatherBodyInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    weathermodel Weathermodel =
-        BlocProvider.of<Get_Weather_Cubit>(context).Weathermodel!;
-    MaterialColor colorr = getThemeColor(Weathermodel.status);
-    if (Weathermodel.image.contains("https:")) {
-      image = Weathermodel.image;
+    WeatherModel weatherModel =
+        BlocProvider.of<GetWeatherCubit>(context).weatherModel!;
+    MaterialColor color = getThemeColor(weatherModel.status);
+    if (weatherModel.image.contains("https:")) {
+      image = weatherModel.image;
     } else {
-      image = 'https:${Weathermodel.image}';
+      image = 'https:${weatherModel.image}';
     }
 
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
         colors: [
-          colorr.shade300,
-          colorr.shade400,
-          colorr.shade500,
-          colorr.shade600,
-          colorr.shade700,
-          colorr.shade800,
-          colorr.shade900,
+          color.shade300,
+          color.shade400,
+          color.shade500,
+          color.shade600,
+          color.shade700,
+          color.shade800,
+          color.shade900,
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
@@ -41,18 +43,18 @@ class Weathe_Body_Info extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              Weathermodel.cityname.toString(),
+              weatherModel.cityName.toString(),
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Text(
-              'updated at ${Weathermodel.date.hour}',
+              'updated at ${weatherModel.date.hour}',
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -65,39 +67,39 @@ class Weathe_Body_Info extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Image.network(image!, scale: .5),
 
                 //  Image.network(image),
                 Text(
-                  '${Weathermodel.temp.round()}',
+                  '${weatherModel.temp.round()}',
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 32,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
 
                 Column(
                   children: [
                     Text(
-                      'Maxtemp: ${Weathermodel.maxtemp.round()}',
+                      'MaxTemp: ${weatherModel.maxTemp.round()}',
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Text(
-                      'Mintemp: ${Weathermodel.mintemp.round()}',
+                      'MinTemp: ${weatherModel.minTemp.round()}',
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -106,7 +108,7 @@ class Weathe_Body_Info extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
               ],
@@ -115,7 +117,7 @@ class Weathe_Body_Info extends StatelessWidget {
               height: 32,
             ),
             Text(
-              Weathermodel.status,
+              weatherModel.status,
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -129,6 +131,6 @@ class Weathe_Body_Info extends StatelessWidget {
   }
 }
 
-DateTime StringToDateTime(value) {
+DateTime stringToDateTime(value) {
   return DateTime.parse(value);
 }

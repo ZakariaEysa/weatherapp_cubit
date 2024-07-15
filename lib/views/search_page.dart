@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weatherapp/cubits/get%20weather%20cubit/Get_Weather_cubit.dart';
-import 'package:weatherapp/views/homepage.dart';
+import '../cubits/WeatherCubit/get_weather_cubit.dart';
+import 'home_page.dart';
 
-class search_page extends StatelessWidget {
-  search_page({super.key});
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,13 @@ class search_page extends StatelessWidget {
         child: Center(
           child: TextField(
             onSubmitted: (value) async {
-              var Getweathercubit = BlocProvider.of<Get_Weather_Cubit>(context);
-              Getweathercubit.getWeather(Cityname: value);
-              Home_Page.s = true;
+              var getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+              getWeatherCubit.getWeather(cityName: value);
+              HomePage.s = true;
 
               Navigator.pop(context);
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 32, horizontal: 16),
                 //   enabledBorder: OutlineInputBorder(),

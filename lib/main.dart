@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weatherapp/cubits/get%20weather%20cubit/Get_Weather_cubit.dart';
-import 'package:weatherapp/cubits/get%20weather%20cubit/get_weather_states.dart';
-import 'package:weatherapp/views/homepage.dart';
+
+import 'cubits/WeatherCubit/get_weather_cubit.dart';
+import 'cubits/WeatherCubit/get_weather_states.dart';
+import 'views/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,18 +20,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Get_Weather_Cubit(),
+      create: (context) => GetWeatherCubit(),
       child: Builder(
-        builder: (context) => BlocBuilder<Get_Weather_Cubit, WeatherState>(
+        builder: (context) => BlocBuilder<GetWeatherCubit, WeatherState>(
           builder: (context, state) {
-            return MaterialApp(
-              theme: ThemeData(
-                  primarySwatch: getThemeColor(
-                      BlocProvider.of<Get_Weather_Cubit>(context)
-                          .Weathermodel
-                          ?.status)),
+            return const MaterialApp(
+
               debugShowCheckedModeBanner: false,
-              home: const Home_Page(),
+              home: HomePage(),
             );
           },
         ),

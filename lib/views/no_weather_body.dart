@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class No_Weather_Body extends StatelessWidget {
-  const No_Weather_Body({super.key});
+class NoWeatherBody extends StatelessWidget {
+  const NoWeatherBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: const Center(
+    return  const Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 16),
+      child:  Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
